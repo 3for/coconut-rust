@@ -133,7 +133,7 @@ an appropriate structure and then use the Schnorr protocol similar to above
    
    // Empty HashSet indicates that no message is being revealed, only knowledge of signature is proved
    let pok =
-       PoKOfSignature::init(&ps_sig, &ps_verkey, msgs.as_slice(), HashSet::new()).unwrap();
+       PoKOfSignature::init(&ps_sig, &ps_verkey, &params, msgs.as_slice(), None, HashSet::new()).unwrap();
    
    let chal = FieldElement::from_msg_hash(&pok.to_bytes());
    
@@ -155,7 +155,7 @@ the indices of the messages being revealed to `PoKOfSignature`.
        revealed_msg_indices.insert(5);
        
        let pok =
-           PoKOfSignature::init(&ps_sig, &ps_verkey, msgs.as_slice(), revealed_msg_indices.clone()).unwrap();
+           PoKOfSignature::init(&ps_sig, &ps_verkey, &params, msgs.as_slice(), None, revealed_msg_indices.clone()).unwrap();
    
        let chal = FieldElement::from_msg_hash(&pok.to_bytes());
    
